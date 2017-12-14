@@ -36,7 +36,146 @@ while True:
 
 <h2>Mastermind Game</h2>
 <textarea rows="30" cols="90">
+import random
+colors = ['r', 'g', 'b', 'w']
+answer = []
+i=0
+while i<4:
+    color = random.randint(0,3)
+    answer.append(colors[color])
+    i=i+1
+cc = ['X','X','X','X']
+pchoice = input('Guess the color combination! Choose a combination of r, g, b, or w. Please choose 4:')
+if answer[0] == pchoice[0]:
+    cc[0] = pchoice[0]
+    print('You got the first color right.')
+if answer[1] == pchoice[1]:
+    cc[1] = pchoice[1]
+    print('You got the second color right.')
+if answer[2] == pchoice[2]:
+    cc[2] = pchoice[2]
+    print('You got the third color right.')
+if answer[3] == pchoice[3]:
+    cc[3] = pchoice[3]
+    print('You got the fourth color right.')
+while True:
+    print('known colors:', cc)
+    pchoice = input('Your answer was incorrect. Please make another guess.')
+    if pchoice != answer:
+        if answer[0] == pchoice[0]:
+            cc[0] = pchoice[0]
+            print('You got the first color right.')
+        if answer[1] == pchoice[1]:
+            cc[1] = pchoice[1]
+            print('You got the second color right.')
+        if answer[2] == pchoice[2]:
+            cc[2] = pchoice[2]
+            print('You got the third color right.')
+        if answer[3] == pchoice[3]:
+            cc[3] = pchoice[3]
+            print('You got the fourth color right.')
+        if answer[0] == pchoice[0] and answer[1] == pchoice[1] and answer[2] == pchoice[2] and answer[3] == pchoice[3]:
+            print('You got it right!')
+            choice = input("Play again? (y/n)")
+            if choice == 'y':
+                colors = ['r', 'g', 'b', 'w']
+                answer = []
+                i = 0
+                while i < 4:
+                    color = random.randint(0, 3)
+                    answer.append(colors[color])
+                    i = i + 1
+                pchoice = input('Guess the color combination! Choose a combination of r, g, b, or w. Please choose 4:')
+                cc = ['X', 'X', 'X', 'X']
+            if choice == 'n':
+                break
+</textarea>
 
+<h2>Hangman Game</h2>
+<textarea rows="30" cols="90">
+import random
+words = ['bird', 'dog', 'cat', 'hamster', 'fish']
+answer = random.choice(words)
+print(answer)
+lused = []
+clett = '_' * len(answer)
+clett = list(clett)
+print('The word is:', clett)
+attempts = 6
+print('You have', attempts, 'attempts remaining.')
+pchoice = input('Guess a letter:')
+while attempts >= 1:
+    if len(pchoice) != 1:
+        print('One letter at a time!')
+        pchoice = input('Guess a letter:')
+    if list(pchoice) == lused:
+        print('Sorry you already used that letter.')
+        pchoice = input('Guess a letter:')
+        continue
+    for i in range(len(answer)):
+        if answer[i] == pchoice:
+            clett[i] = pchoice
+            lused += pchoice
+            print('letters used:', lused)
+            pchoice = clett
+            if pchoice == list(answer):
+                print('You won with', attempts, 'attempts remaining!')
+                pchoice = input('Play again? (y/n)')
+                if pchoice == 'y':
+                    words = ['bird', 'dog', 'cat', 'hamster', 'fish']
+                    answer = random.choice(words)
+                    print(answer)
+                    print('The word is:', clett)
+                    print('You have', attempts, 'attempts remaining.')
+                    pchoice = input('Guess the word!')
+                if pchoice == 'n':
+                    break
+            print('The word is:', clett)
+            print('You got a letter right!')
+            pchoice = input('Guess another letter.')
+            if list(answer) == list(clett):
+                print('you win!')
+    if pchoice != answer:
+        lused += pchoice
+        print('letters used:', lused)
+        print('The word is:', clett)
+        attempts -= 1
+        print('You got it wrong. You have', attempts, ' attempts remaining.')
+        pchoice = input('Give it another try.')
+    if pchoice == answer:
+        print('You win!')
+        pchoice = input('Play again? (y/n)')
+        if pchoice == 'y':
+            words = ['bird', 'dog', 'cat', 'hamster', 'fish']
+            answer = random.choice(words)
+            print(answer)
+            print('The word is:', clett)
+            print('You have', attempts, 'attempts remaining.')
+            pchoice = input('Guess the word!')
+        if pchoice == 'n':
+            break
+    if attempts <= 1:
+        print('You lost!')
+        pchoice = input('Play again? (y/n)')
+        if pchoice == 'y':
+            words = ['bird', 'dog', 'cat', 'hamster', 'fish']
+            answer = random.choice(words)
+            print(answer)
+            lused = []
+            clett = '_' * len(answer)
+            clett = list(clett)
+            attempts = 6
+            print('The word is:', clett)
+            print('You have', attempts, 'attempts remaining.')
+            pchoice = input('Guess the word!')
+        if pchoice == 'n':
+            break
+    
+</textarea>
+
+<h2>Decimal Converter</h2>
+<textarea rows="30" cols="90">
+    
 </textarea>
 <p> <a href="index.html"> Home </a></p> <br>
 </body>
